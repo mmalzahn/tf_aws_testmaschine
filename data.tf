@@ -19,11 +19,16 @@ data "terraform_remote_state" "baseInfra" {
 
   config {
     bucket = "mm-terraform-remote-state-storage"
-    key    = "env:/dev/baseinfrastruktur.state"
+    key    = "env:/${terraform.workspace}/baseinfrastruktur.state"
     region = "eu-west-1"
   }
 }
-
+resource "random_integer" "randomScriptPort" {
+  count    = "${lookup(var.amis_accesss,var.testOs)=="rdp" ? var.anzahlInstanzen : 0}"
+  min     = 12000
+  max     = 14000
+  seed = "${count.index}"
+}
 resource "random_string" "dnshostname" {
   length  = "10"
   special = "false"
