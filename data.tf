@@ -26,7 +26,7 @@ data "terraform_remote_state" "baseInfra" {
 }
 
 resource "random_integer" "randomScriptPort" {
-  count = "${lookup(var.amis_accesss,var.testOs)=="rdp" ? var.anzahlInstanzen : 0}"
+  #count = "${lookup(var.amis_accesss,var.testOs)=="rdp" ? var.anzahlInstanzen : 0}"
   min   = 12000
   max   = 14000
   seed  = "${count.index}"

@@ -79,3 +79,18 @@ variable "amis_accesss" {
     Windows1803wC   = "rdp"
   }
 }
+variable "amis_ec2user" {
+  default = {
+    AmazonLinux     = "ec2-user"
+    Ubuntu16        = "ubuntu"
+    SLES15          = "ec2-user"
+    RedHat          = "ec2-user"
+    Windows2008R2   = "Administrator"
+    Windows2012     = "Administrator"
+    Windows2012R2   = "Administrator"
+    Windows2016base = "Administrator"
+    Windows2016wC   = "Administrator"
+    Windows1703wC   = "Administrator"
+    Windows1803wC   = "Administrator"
+  }
+}

@@ -64,9 +64,11 @@ data "template_file" "startSshScript" {
   template = "${file("tpl/start_ssh.tpl")}"
 
   vars {
+    random_port      = "${element(random_integer.randomScriptPort.*.result,count.index)}"
     userid           = "${random_string.dnshostname.result}"
     host_fqdn        = "${element(aws_route53_record.testmachine.*.fqdn,count.index)}"
     bastionhost_fqdn = "${element(data.terraform_remote_state.baseInfra.bastion_dns,0)}"
+    ec2_userid ="${lookup(var.amis_ec2user, var.testOs)}"
   }
 }
 
