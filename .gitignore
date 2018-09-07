@@ -7,3 +7,5 @@
 *.tfplan
 # .tfvars files
 *.tfvars
+
+keys/

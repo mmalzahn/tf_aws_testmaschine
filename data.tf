@@ -11,6 +11,7 @@ locals {
     tf_configId     = "${random_id.configId.b64_url}"
   }
 
+  projId          = "${random_string.dnshostname.result}"
   resource_prefix = "${random_id.randomPart.b64_url}-${var.project_name}-${terraform.workspace}-"
 }
 
@@ -23,16 +24,19 @@ data "terraform_remote_state" "baseInfra" {
     region = "eu-west-1"
   }
 }
+
 resource "random_integer" "randomScriptPort" {
-  count    = "${lookup(var.amis_accesss,var.testOs)=="rdp" ? var.anzahlInstanzen : 0}"
-  min     = 12000
-  max     = 14000
-  seed = "${count.index}"
+  count = "${lookup(var.amis_accesss,var.testOs)=="rdp" ? var.anzahlInstanzen : 0}"
+  min   = 12000
+  max   = 14000
+  seed  = "${count.index}"
 }
+
 resource "random_string" "dnshostname" {
-  length  = "10"
-  special = "false"
-  upper   = "false"
+  length  = 10
+  special = false
+  upper   = false
+  number  = false
 }
 
 resource "random_id" "configId" {

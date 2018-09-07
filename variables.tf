@@ -4,6 +4,9 @@ variable "project_name" {}
 variable "instance_type" {
   default = "t2.micro"
 }
+variable "dns_domain" {
+  default = "dca-poc.de"
+}
 
 variable "tag_responsibel" {}
 
