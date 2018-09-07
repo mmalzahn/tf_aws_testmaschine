@@ -94,3 +94,15 @@ variable "amis_ec2user" {
     Windows1803wC   = "Administrator"
   }
 }
+
+variable "remote_state_bucket" {
+  default = ""
+}
+
+variable "remote_state_key" {
+  default = ""
+}
+
+variable "remote_state_bucket_region" {
+  default = ""
+}
