@@ -1,4 +1,17 @@
 variable "aws_region" {}
+
+variable "remote_state_bucket" {
+  default = ""
+}
+
+variable "remote_state_key" {
+  default = ""
+}
+
+variable "remote_state_bucket_region" {
+  default = ""
+}
+
 variable "project_name" {}
 
 variable "instance_type" {
@@ -95,14 +108,3 @@ variable "amis_ec2user" {
   }
 }
 
-variable "remote_state_bucket" {
-  default = ""
-}
-
-variable "remote_state_key" {
-  default = ""
-}
-
-variable "remote_state_bucket_region" {
-  default = ""
-}
