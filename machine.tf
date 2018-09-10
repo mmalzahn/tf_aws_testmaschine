@@ -59,6 +59,7 @@ resource "local_file" "connectRdpScript" {
   content  = "${element(data.template_file.startRdpScript.*.rendered,count.index)}"
   filename = "${path.module}/start_rdp-${count.index}_over_ssh.ps1"
 }
+
 data "template_file" "startSshScript" {
   count    = "${lookup(var.amis_accesss,var.testOs)=="ssh" ? var.anzahlInstanzen : 0}"
   template = "${file("tpl/start_ssh.tpl")}"
@@ -68,7 +69,7 @@ data "template_file" "startSshScript" {
     userid           = "${random_string.dnshostname.result}"
     host_fqdn        = "${element(aws_route53_record.testmachine.*.fqdn,count.index)}"
     bastionhost_fqdn = "${element(data.terraform_remote_state.baseInfra.bastion_dns,0)}"
-    ec2_userid ="${lookup(var.amis_ec2user, var.testOs)}"
+    ec2_userid       = "${lookup(var.amis_ec2user, var.testOs)}"
   }
 }
 
