@@ -20,7 +20,3 @@ resource "local_file" "instancePwds" {
   content  = "${rsadecrypt(element(aws_instance.testmachine.*.password_data,count.index), tls_private_key.private_key.private_key_pem)}"
   filename = "${path.module}/keys/pwd_host-${count.index}_Administrator.txt"
 }
-
-# output "WindowsPassword" {
-#   value = "${base64decode(data.template_file.pwdEncoder.*.rendered)}"
-# }
