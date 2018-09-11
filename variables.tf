@@ -56,11 +56,9 @@ variable "pingable" {
 variable "aws_keyname" {
   default = ""
 }
-
 variable "anzahlInstanzen" {
   default = 1
 }
-
 variable "aws_amis" {
   default = {
     AmazonLinux     = "ami-047bb4163c506cd98"
@@ -76,7 +74,6 @@ variable "aws_amis" {
     Windows1803wC   = "ami-068a5d5273c6e797e"
   }
 }
-
 variable "amis_accesss" {
   default = {
     AmazonLinux     = "ssh"
@@ -107,4 +104,3 @@ variable "amis_ec2user" {
     Windows1803wC   = "Administrator"
   }
 }
-
