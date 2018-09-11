@@ -5,7 +5,7 @@ variable "remote_state_bucket" {
 }
 
 variable "remote_state_key" {
-  default = ""
+  default = "baseinfrastruktur.state"
 }
 
 variable "remote_state_bucket_region" {
