@@ -17,6 +17,7 @@ variable "project_name" {}
 variable "instance_type" {
   default = "t2.micro"
 }
+
 variable "dns_domain" {
   default = "dca-poc.de"
 }
@@ -56,12 +57,15 @@ variable "pingable" {
 variable "aws_keyname" {
   default = ""
 }
+
 variable "anzahlInstanzen" {
   default = 1
 }
+
 variable "aws_amis" {
   default = {
     AmazonLinux     = "ami-047bb4163c506cd98"
+    AmazonLinux2    = "ami-0bdb1d6c15a40392c"
     Ubuntu16        = "ami-0181f8d9b6f098ec4"
     SLES15          = "ami-050889503ddaec473"
     RedHat          = "ami-7c491f05"
@@ -74,9 +78,11 @@ variable "aws_amis" {
     Windows1803wC   = "ami-068a5d5273c6e797e"
   }
 }
+
 variable "amis_accesss" {
   default = {
     AmazonLinux     = "ssh"
+    AmazonLinux2    = "ssh"
     Ubuntu16        = "ssh"
     SLES15          = "ssh"
     RedHat          = "ssh"
@@ -89,9 +95,11 @@ variable "amis_accesss" {
     Windows1803wC   = "rdp"
   }
 }
+
 variable "amis_ec2user" {
   default = {
     AmazonLinux     = "ec2-user"
+    AmazonLinux2    = "ec2-user"
     Ubuntu16        = "ubuntu"
     SLES15          = "ec2-user"
     RedHat          = "ec2-user"
