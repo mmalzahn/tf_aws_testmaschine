@@ -1,9 +1,9 @@
 output "bastion_dns" {
-  value = "${data.terraform_remote_state.baseInfra.bastion_dns}"
+  value = "${module.baseInfra.bastion_dns}"
 }
 
 output "bastion_ip" {
-  value = "${data.terraform_remote_state.baseInfra.*.bastion_public_ip}"
+  value = "${module.baseInfra.bastion_public_ip}"
 }
 
 output "Machine_Dns" {
