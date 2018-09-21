@@ -1,33 +1,11 @@
 variable "aws_region" {}
 
-variable "remote_state_bucket" {
-  default = ""
-}
-
-variable "remote_state_key" {
-  default = "baseinfrastruktur.state"
-}
-
-variable "remote_state_bucket_region" {
-  default = ""
-}
-
 variable "project_name" {}
 
 variable "instance_type" {
   default = "t2.micro"
 }
-
-variable "dns_domain" {
-  default = "dca-poc.de"
-}
-
 variable "tag_responsibel" {}
-
-variable "backend_key" {
-  default = "baseinfrastruktur.state"
-}
-
 variable "laufzeit_tage" {
   default = "60"
 }
