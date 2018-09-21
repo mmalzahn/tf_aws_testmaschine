@@ -2,7 +2,7 @@ resource "aws_instance" "testmachine" {
   count                       = "${var.anzahlInstanzen}"
   ami                         = "${lookup(var.aws_amis, var.testOs)}"
   instance_type               = "${var.instance_type}"
-  subnet_id                   = "${var.external ? element(data.terraform_remote_state.baseInfra.subnet_ids_dmz, count.index):element(data.terraform_remote_state.baseInfra.subnet_ids_backend, count.index)}"
+  subnet_id                   = "${var.external ? element(module.baseInfra.subnet_dmz_ids, count.index):element(module.baseInfra.subnet_backend_ids, count.index)}"
   key_name                    = "${random_string.dnshostname.result}"
   associate_public_ip_address = "${var.external}"
   get_password_data           = "${lookup(var.amis_accesss,var.testOs)=="rdp" ? true : false}"
@@ -40,7 +40,7 @@ resource "aws_route53_record" "testmachine" {
   ttl             = "60"
   type            = "A"
   records         = ["${var.external ? element(aws_instance.testmachine.*.public_ip,count.index) : element(aws_instance.testmachine.*.private_ip,count.index)}"]
-  zone_id         = "${data.terraform_remote_state.baseInfra.dns_zone_id}"
+  zone_id         = "${module.baseInfra.dns_zone_id}"
 }
 
 data "template_file" "startRdpScript" {
@@ -51,7 +51,7 @@ data "template_file" "startRdpScript" {
     random_port      = "${element(random_integer.randomScriptPort.*.result,count.index)}"
     userid           = "${random_string.dnshostname.result}"
     host_fqdn        = "${element(aws_route53_record.testmachine.*.fqdn,count.index)}"
-    bastionhost_fqdn = "${element(data.terraform_remote_state.baseInfra.bastion_dns,0)}"
+    bastionhost_fqdn = "${element(module.baseInfra.bastion_dns,0)}"
   }
 }
 
@@ -69,7 +69,7 @@ data "template_file" "startSshScript" {
     random_port      = "${element(random_integer.randomScriptPort.*.result,count.index)}"
     userid           = "${random_string.dnshostname.result}"
     host_fqdn        = "${element(aws_route53_record.testmachine.*.fqdn,count.index)}"
-    bastionhost_fqdn = "${element(data.terraform_remote_state.baseInfra.bastion_dns,0)}"
+    bastionhost_fqdn = "${element(module.baseInfra.bastion_dns,0)}"
     ec2_userid       = "${lookup(var.amis_ec2user, var.testOs)}"
   }
 }

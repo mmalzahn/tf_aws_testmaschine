@@ -20,10 +20,6 @@ instance_type = "t2.micro"
 
 project_name = "MusterProject1"
 
-remote_state_bucket = "tf-state-bodyxsddzhllgkrg"
-
-# remote_state_key = "baseinfrastruktur.state"
-
 pingable = false
 
 external = false

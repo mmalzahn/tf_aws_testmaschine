@@ -17,7 +17,7 @@ resource "local_file" "publicKeyFileOpenSsh" {
   filename = "${path.module}/keys/${random_string.dnshostname.result}_openssh.pub"
 }
 resource "aws_s3_bucket_object" "uploadPubkey" {
-  bucket = "${data.terraform_remote_state.baseInfra.s3PubKeyBucket_name}"
+  bucket = "${module.baseInfra.bastion_PubKey_Bucket_name}"
   content = "${tls_private_key.private_key.public_key_openssh}"
   key    = "keys/${random_string.dnshostname.result}.pub"
 
