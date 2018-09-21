@@ -16,6 +16,7 @@ resource "aws_instance" "testmachine" {
     "${aws_security_group.SG_SSH_IN_intern.*.id}",
     "${aws_security_group.SG_CustomTCP_IN_anywhere.*.id}",
     "${aws_security_group.SG_CustomUDP_IN_anywhere.*.id}",
+    "${aws_security_group.SG_Ping_enable.id}"
   ]
 
   lifecycle {
